@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SavingsPlanner.Views.BudgetPage"
+             BackgroundColor="{StaticResource LightGrey}">
+    <ContentPage.ToolbarItems>
+
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="You dont seem to have created a budget yet."
+                   HorizontalTextAlignment="Center">
+            </Label>
+            <Button x:Name="NewBudget_Button"
+                    Clicked="NewBudget_Clicked"
+                    Text="CREATE A BUDGET!"
+                    TextColor="{StaticResource Grey}"
+                    BorderColor="{StaticResource Grey}"
+                    BorderWidth="1"
+                    FontSize="Header"
+                    Padding="20"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="{StaticResource Green}">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
