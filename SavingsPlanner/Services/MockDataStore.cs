@@ -6,61 +6,66 @@ using SavingsPlanner.Models;
 
 namespace SavingsPlanner.Services
 {
-    public class MockDataStore : IDataStore<Budget>
+    public class MockDataStore : IDataStore<Expense>
     {
-        //    List<Item> items;
+        List<Expense> Expenses;
 
-        //    public MockDataStore()
-        //    {
-        //        items = new List<Item>();
-        //        var mockItems = new List<Item>
-        //        {
-        //            new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-        //            new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-        //            new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-        //            new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-        //            new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-        //            new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
-        //        };
+        public MockDataStore()
+        {
+            Expenses = new List<Expense>();
+            var mockExpenses = new List<Expense>();
+            //{
+            //                new Expense { Id = Guid.NewGuid().ToString(), Text = "First Expense", Description="This is an Expense description." },
+            //                new Expense { Id = Guid.NewGuid().ToString(), Text = "Second Expense", Description="This is an Expense description." },
+            //                new Expense { Id = Guid.NewGuid().ToString(), Text = "Third Expense", Description="This is an Expense description." },
+            //                new Expense { Id = Guid.NewGuid().ToString(), Text = "Fourth Expense", Description="This is an Expense description." },
+            //                new Expense { Id = Guid.NewGuid().ToString(), Text = "Fifth Expense", Description="This is an Expense description." },
+            //                new Expense { Id = Guid.NewGuid().ToString(), Text = "Sixth Expense", Description="This is an Expense description." }
+            //};
 
-        //        foreach (var item in mockItems)
-        //        {
-        //            items.Add(item);
-        //        }
-        //    }
+            foreach (var Expense in mockExpenses)
+            {
+                Expenses.Add(Expense);
+            }
+        }
 
-        //    public async Task<bool> AddItemAsync(Item item)
-        //    {
-        //        items.Add(item);
+        public async Task<bool> AddExpenseAsync(Expense Expense)
+        {
+            Expenses.Add(Expense);
 
-        //        return await Task.FromResult(true);
-        //    }
+            return await Task.FromResult(true);
+        }
 
-        //    public async Task<bool> UpdateItemAsync(Item item)
-        //    {
-        //        var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
-        //        items.Remove(oldItem);
-        //        items.Add(item);
+        public async Task<bool> UpdateExpenseAsync(Expense Expense)
+        {
+            var oldExpense = Expenses.Where((Expense arg) => arg.Id == Expense.Id).FirstOrDefault();
+            Expenses.Remove(oldExpense);
+            Expenses.Add(Expense);
 
-        //        return await Task.FromResult(true);
-        //    }
+            return await Task.FromResult(true);
+        }
 
-        //    public async Task<bool> DeleteItemAsync(string id)
-        //    {
-        //        var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-        //        items.Remove(oldItem);
+        public async Task<bool> DeleteExpenseAsync(string id)
+        {
+            var oldExpense = Expenses.Where((Expense arg) => arg.Id == id).FirstOrDefault();
+            Expenses.Remove(oldExpense);
 
-        //        return await Task.FromResult(true);
-        //    }
+            return await Task.FromResult(true);
+        }
 
-        //    public async Task<Item> GetItemAsync(string id)
-        //    {
-        //        return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
-        //    }
+        public async Task<Expense> GetExpenseAsync(string id)
+        {
+            return await Task.FromResult(Expenses.FirstOrDefault(s => s.Id == id));
+        }
 
-        //    public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
-        //    {
-        //        return await Task.FromResult(items);
-        //    }
+        public async Task<IEnumerable<Expense>> GetExpensesAsync(bool forceRefresh = false)
+        {
+            return await Task.FromResult(Expenses);
+        }
+
+        //public Task<Expense> GetItemAsync(string id)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

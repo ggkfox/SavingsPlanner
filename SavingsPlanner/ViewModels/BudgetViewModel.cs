@@ -1,7 +1,7 @@
 ﻿using System;
 namespace SavingsPlanner.ViewModels
 {
-    public class BudgetViewModel
+    public class BudgetViewModel : BaseViewModel
     {
         public BudgetViewModel()
         {

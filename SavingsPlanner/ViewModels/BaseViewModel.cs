@@ -12,7 +12,7 @@ namespace SavingsPlanner.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Budget> DataStore => DependencyService.Get<IDataStore<Budget>>() ?? new MockDataStore();
+        public IDataStore<Expense> DataStore => DependencyService.Get<IDataStore<Expense>>() ?? new MockDataStore();
 
         bool isBusy = false;
         public bool IsBusy

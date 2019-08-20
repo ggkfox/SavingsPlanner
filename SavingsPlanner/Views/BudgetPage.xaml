@@ -9,7 +9,8 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="You dont seem to have created a budget yet."
-                   HorizontalTextAlignment="Center">
+                   HorizontalTextAlignment="Center"
+                   Margin="30">
             </Label>
             <Button x:Name="NewBudget_Button"
                     Clicked="NewBudget_Clicked"
