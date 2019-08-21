@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="{StaticResource LightGrey}"
+             NavigationPage.HasBackButton="False"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:SavingsPlanner.Models"
              x:Class="SavingsPlanner.Views.SavingsDetailPage"
-             Title="Create a budget">
+             Title="New Budget - Savings">
     <ContentPage.Content>
         <StackLayout>
 
             <StackLayout>
-                <Label Text="List your income sources."
+                <Label Text="List your forms of saving."
                        FontSize="Title"
                        HorizontalTextAlignment="Center"
                        Margin="30">
@@ -71,11 +72,13 @@
                          VerticalOptions="EndAndExpand"
                          Padding="0,0,0,15">
                 <Button Text="back"
-                        TextColor="{StaticResource LightGrey}"
-                        BackgroundColor="#BBB"
+                        Clicked="BackButton_Clicked"
+                        TextColor="white"
+                        BackgroundColor="{StaticResource Grey}"
                         WidthRequest="100"
                         HorizontalOptions="EndAndExpand"></Button>
                 <Button Text="next"
+                        Clicked="NextButton_Clicked"
                         TextColor="white"
                         BackgroundColor="{StaticResource Grey}"
                         WidthRequest="100"

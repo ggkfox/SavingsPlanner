@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SavingsPlanner.Views.NewBudgetOverview"
+             BackgroundColor="{StaticResource LightGrey}"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding Title}"
+                   HorizontalOptions="Center"
+                   Margin="5"></Label>
+            <Label Text="{Binding SavingsSum}"
+                   HorizontalOptions="Center"
+                   Margin="5"></Label>
+            <Label Text="{Binding ExpensesSum}"
+                   HorizontalOptions="Center"
+                   Margin="5"></Label>
+            <Label Text="{Binding Remainder}"
+                   HorizontalOptions="Center"
+                   Margin="5"></Label>
+
+
+            <Button Text="Save Budget"
+                    TextColor="{StaticResource Grey}"
+                    BackgroundColor="{StaticResource Green}"
+                    BorderColor="{StaticResource Grey}"
+                    BorderWidth="1"
+                    FontSize="Title"
+                    Padding="20"
+                    VerticalOptions="EndAndExpand"
+                    HorizontalOptions="CenterAndExpand">
+            </Button>
+            <Button Text="Back"
+                    FontSize="Medium"
+                    VerticalOptions="End"
+                    HorizontalOptions="CenterAndExpand"
+                    WidthRequest="100"
+                    BackgroundColor="{StaticResource Grey}"
+                    TextColor="white"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

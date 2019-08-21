@@ -32,15 +32,15 @@ namespace SavingsPlanner.Views
 
         }
 
-        public void AddSavingsItem(object sender, EventArgs e)
+        public void AddExpense(object sender, EventArgs e)
         {
-            viewModel.addSavings.Execute(new Expense { Title = "", Amount = 0 });
+            viewModel.AddExpense.Execute(new Expense { Title = "", Amount = 0 });
         }
 
         public async void NextButton_Clicked(object sender, EventArgs e)
         {
             await viewModel.SaveChanges();
-            await Navigation.PushAsync(new NavigationPage(new SavingsDetailPage()));
+            await Navigation.PushAsync(new SavingsDetailPage());
         }
 
         protected override void OnAppearing()
@@ -51,6 +51,7 @@ namespace SavingsPlanner.Views
             {
                 viewModel.LoadExpensesCommand.Execute(null);
             }
+            IsVisible = true;
         }
     }
 }

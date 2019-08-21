@@ -13,15 +13,15 @@ using SavingsPlanner.ViewModels;
 
 namespace SavingsPlanner.Views
 {
-    public partial class SavingsDetailPage : ContentPage
+    public partial class ExpenseDetailPage : ContentPage
     {
-        SavingsDetailViewModel viewModel;
+        ExpenseDetailViewModel viewModel;
 
-        public SavingsDetailPage()
+        public ExpenseDetailPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new SavingsDetailViewModel();
+            BindingContext = viewModel = new ExpenseDetailViewModel();
         }
 
         public void DeleteButton_Clicked(object sender, EventArgs e)
@@ -29,7 +29,6 @@ namespace SavingsPlanner.Views
             var button = sender as Button;
             var item = button?.BindingContext as Expense;
             viewModel.RemoveExpense.Execute(item);
-
         }
 
         public void AddSavingsItem(object sender, EventArgs e)
@@ -46,7 +45,7 @@ namespace SavingsPlanner.Views
         public async void NextButton_Clicked(object sender, EventArgs e)
         {
             await viewModel.SaveChanges();
-            await Navigation.PushAsync(new ExpenseDetailPage());
+            await Navigation.PushAsync(new NewBudgetOverview());
         }
 
         protected override void OnAppearing()

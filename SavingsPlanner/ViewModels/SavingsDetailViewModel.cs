@@ -44,6 +44,11 @@ namespace SavingsPlanner.ViewModels
             }
         }
 
+        public async Task SaveChanges()
+        {
+            await DraftBudget.AssignSavingsAsync(Expenses);
+        }
+
         async Task ExecuteLoadExpensesCommand()
         {
             if (IsBusy)
@@ -54,10 +59,14 @@ namespace SavingsPlanner.ViewModels
             try
             {
                 Expenses.Clear();
-                var items = await DraftBudget.GetIncomeSoursesAsync(true);
+                var items = await DraftBudget.GetSavingsAsync(true);
                 foreach (var item in items)
                 {
                     Expenses.Add(item);
+                }
+                if (Expenses.Count == 0)
+                {
+                    Expenses.Add(new Expense { Id = Guid.NewGuid().ToString(), Title = "", Amount = 0 });
                 }
             }
             catch (Exception ex)

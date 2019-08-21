@@ -11,12 +11,12 @@ using System.Collections.Generic;
 
 namespace SavingsPlanner.ViewModels
 {
-    public class IncomeDetailViewModel : BaseViewModel
+    public class ExpenseDetailViewModel : BaseViewModel
     {
         public ObservableCollection<Expense> Expenses { get; set; }
         public Command LoadExpensesCommand { get; set; }
 
-        public IncomeDetailViewModel()
+        public ExpenseDetailViewModel()
         {
             Expenses = new ObservableCollection<Expense>();
             LoadExpensesCommand = new Command(async () => await ExecuteLoadExpensesCommand());
@@ -33,7 +33,7 @@ namespace SavingsPlanner.ViewModels
             }
         }
 
-        public Command<Expense> AddExpense
+        public Command<Expense> addSavings
         {
             get
             {
@@ -46,7 +46,7 @@ namespace SavingsPlanner.ViewModels
 
         public async Task SaveChanges()
         {
-            await DraftBudget.AssignIncomeAsync(Expenses);
+            await DraftBudget.AssignExpensesAsync(Expenses);
         }
 
         async Task ExecuteLoadExpensesCommand()
@@ -59,7 +59,7 @@ namespace SavingsPlanner.ViewModels
             try
             {
                 Expenses.Clear();
-                var items = await DraftBudget.GetIncomeSoursesAsync(true);
+                var items = await DraftBudget.GetMonthlyExpensesAsync(true);
                 foreach (var item in items)
                 {
                     Expenses.Add(item);
@@ -78,5 +78,6 @@ namespace SavingsPlanner.ViewModels
                 IsBusy = false;
             }
         }
+
     }
 }

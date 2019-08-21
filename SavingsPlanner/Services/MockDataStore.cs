@@ -116,12 +116,12 @@ namespace SavingsPlanner.Services
 
         public async Task<ObservableCollection<Expense>> GetSavingsAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(IncomeSources);
+            return await Task.FromResult(Savings);
         }
 
         public async Task<ObservableCollection<Expense>> GetMonthlyExpensesAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(IncomeSources);
+            return await Task.FromResult(MonthlyExpenses);
         }
 
     }

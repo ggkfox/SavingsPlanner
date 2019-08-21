@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="{StaticResource LightGrey}"
              NavigationPage.HasBackButton="False"
-             IsVisible="false"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:SavingsPlanner.Models"
-             x:Class="SavingsPlanner.Views.IncomeDetailPage"
-             Title="New Budget - Income">
+             x:Class="SavingsPlanner.Views.ExpenseDetailPage"
+             Title="New Budget - Savings">
     <ContentPage.Content>
         <StackLayout>
 
@@ -57,7 +56,7 @@
                     </StackLayout>
                 </ScrollView>
                 <Button Text="Add Item"
-                        Clicked="AddExpense"
+                        Clicked="AddSavingsItem"
                         BackgroundColor="{StaticResource Green}"
                         TextColor="{StaticResource Grey}"
                         BorderColor="{StaticResource Grey}"
@@ -73,9 +72,9 @@
                          VerticalOptions="EndAndExpand"
                          Padding="0,0,0,15">
                 <Button Text="back"
-                        IsEnabled="False"
-                        TextColor="{StaticResource LightGrey}"
-                        BackgroundColor="#BBB"
+                        Clicked="BackButton_Clicked"
+                        TextColor="white"
+                        BackgroundColor="{StaticResource Grey}"
                         WidthRequest="100"
                         HorizontalOptions="EndAndExpand"></Button>
                 <Button Text="next"
