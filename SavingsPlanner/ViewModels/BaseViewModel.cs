@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -12,7 +14,8 @@ namespace SavingsPlanner.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Expense> DataStore => DependencyService.Get<IDataStore<Expense>>() ?? new MockDataStore();
+        public IDataStore<Expense> Budget => DependencyService.Get<IDataStore<Expense>>() ?? new MockDataStore();
+        public IDataStore<Expense> DraftBudget => DependencyService.Get<IDataStore<Expense>>() ?? new MockDataStore();
 
         bool isBusy = false;
         public bool IsBusy

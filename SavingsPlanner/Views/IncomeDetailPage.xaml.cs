@@ -13,14 +13,15 @@ using SavingsPlanner.ViewModels;
 
 namespace SavingsPlanner.Views
 {
-    public partial class NewBudgetWizardPage : ContentPage
+    public partial class IncomeDetailPage : ContentPage
     {
-        NewBudgetViewModel viewModel;
-        public NewBudgetWizardPage()
+        IncomeDetailViewModel viewModel;
+
+        public IncomeDetailPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new NewBudgetViewModel();
+            BindingContext = viewModel = new IncomeDetailViewModel();
         }
 
         public void DeleteButton_Clicked(object sender, EventArgs e)
@@ -33,7 +34,13 @@ namespace SavingsPlanner.Views
 
         public void AddSavingsItem(object sender, EventArgs e)
         {
-            viewModel.addSavings.Execute(new Expense { Title = "name", Amount = 0 });
+            viewModel.addSavings.Execute(new Expense { Title = "", Amount = 0 });
+        }
+
+        public async void NextButton_Clicked(object sender, EventArgs e)
+        {
+            await viewModel.SaveChanges();
+            await Navigation.PushAsync(new NavigationPage(new SavingsDetailPage()));
         }
 
         protected override void OnAppearing()

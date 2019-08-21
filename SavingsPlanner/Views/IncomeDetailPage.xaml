@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="{StaticResource LightGrey}"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SavingsPlanner.Models"
+             x:Class="SavingsPlanner.Views.IncomeDetailPage"
+             Title="Create a budget">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout>
+                <Label Text="List your income sources."
+                       FontSize="Title"
+                       HorizontalTextAlignment="Center"
+                       Margin="30">
+                </Label>
+                <ScrollView>
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 BindableLayout.ItemsSource="{Binding Expenses}">
+
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="90" />
+                                    </Grid.ColumnDefinitions>
+                                    <Entry Text="{Binding Title}"
+                                           Placeholder="Expense Name"
+                                           Grid.Row="0"
+                                           Grid.Column="0">
+                                    </Entry>
+                                    <Entry Text="{Binding Amount}"
+                                           Placeholder="Amount"
+                                           Keyboard="Numeric"
+                                           Grid.Row="0"
+                                           Grid.Column="1">
+                                    </Entry>
+                                    <Button Text="Delete"
+                                            Clicked="DeleteButton_Clicked"
+                                            TextColor="white"
+                                            BackgroundColor="red"
+                                            Grid.Row="0"
+                                            Grid.Column="2">
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+
+
+                    </StackLayout>
+                </ScrollView>
+                <Button Text="Add Item"
+                        Clicked="AddSavingsItem"
+                        BackgroundColor="{StaticResource Green}"
+                        TextColor="{StaticResource Grey}"
+                        BorderColor="{StaticResource Grey}"
+                        BorderWidth="1"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Padding="20, 0, 20, 0"
+                        Margin="5"></Button>
+            </StackLayout>
+
+
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="EndAndExpand"
+                         Padding="0,0,0,15">
+                <Button Text="back"
+                        IsEnabled="False"
+                        TextColor="{StaticResource LightGrey}"
+                        BackgroundColor="#BBB"
+                        WidthRequest="100"
+                        HorizontalOptions="EndAndExpand"></Button>
+                <Button Text="next"
+                        Clicked="NextButton_Clicked"
+                        TextColor="white"
+                        BackgroundColor="{StaticResource Grey}"
+                        WidthRequest="100"
+                        HorizontalOptions="StartAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

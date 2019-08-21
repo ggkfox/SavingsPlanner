@@ -14,7 +14,7 @@ namespace SavingsPlanner.Views
 
         public async void NewBudget_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewBudgetWizardPage()));
+            await Navigation.PushModalAsync(new NavigationPage(new IncomeDetailPage()));
         }
     }
 }

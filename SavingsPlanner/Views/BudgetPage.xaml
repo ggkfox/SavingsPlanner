@@ -18,7 +18,7 @@
                     TextColor="{StaticResource Grey}"
                     BorderColor="{StaticResource Grey}"
                     BorderWidth="1"
-                    FontSize="Header"
+                    FontSize="Title"
                     Padding="20"
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand"

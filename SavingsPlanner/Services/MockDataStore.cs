@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+//using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using SavingsPlanner.Models;
@@ -8,64 +9,120 @@ namespace SavingsPlanner.Services
 {
     public class MockDataStore : IDataStore<Expense>
     {
-        List<Expense> Expenses;
+        ObservableCollection<Expense> IncomeSources;
+        ObservableCollection<Expense> Savings;
+        ObservableCollection<Expense> MonthlyExpenses;
 
         public MockDataStore()
         {
-            Expenses = new List<Expense>();
-            var mockExpenses = new List<Expense>();
-            //{
-            //                new Expense { Id = Guid.NewGuid().ToString(), Text = "First Expense", Description="This is an Expense description." },
-            //                new Expense { Id = Guid.NewGuid().ToString(), Text = "Second Expense", Description="This is an Expense description." },
-            //                new Expense { Id = Guid.NewGuid().ToString(), Text = "Third Expense", Description="This is an Expense description." },
-            //                new Expense { Id = Guid.NewGuid().ToString(), Text = "Fourth Expense", Description="This is an Expense description." },
-            //                new Expense { Id = Guid.NewGuid().ToString(), Text = "Fifth Expense", Description="This is an Expense description." },
-            //                new Expense { Id = Guid.NewGuid().ToString(), Text = "Sixth Expense", Description="This is an Expense description." }
-            //};
-
-            foreach (var Expense in mockExpenses)
-            {
-                Expenses.Add(Expense);
-            }
+            IncomeSources = new ObservableCollection<Expense>();
+            Savings = new ObservableCollection<Expense>();
+            MonthlyExpenses = new ObservableCollection<Expense>();
         }
 
-        public async Task<bool> AddExpenseAsync(Expense Expense)
+        //-----------Assign Function-------------
+        public async Task<bool> AssignIncomeAsync(ObservableCollection<Expense> expenses)
         {
-            Expenses.Add(Expense);
-
+            IncomeSources = expenses;
+            return await Task.FromResult(true);
+        }
+        public async Task<bool> AssignSavingsAsync(ObservableCollection<Expense> expenses)
+        {
+            Savings = expenses;
+            return await Task.FromResult(true);
+        }
+        public async Task<bool> AssignExpensesAsync(ObservableCollection<Expense> expenses)
+        {
+            MonthlyExpenses = expenses;
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateExpenseAsync(Expense Expense)
+        //-----------Add Functions-------------
+        public async Task<bool> AddIncomeAsync(Expense expense)
         {
-            var oldExpense = Expenses.Where((Expense arg) => arg.Id == Expense.Id).FirstOrDefault();
-            Expenses.Remove(oldExpense);
-            Expenses.Add(Expense);
-
+            IncomeSources.Add(expense);
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteExpenseAsync(string id)
+        public async Task<bool> AddSavingsAsync(Expense expense)
         {
-            var oldExpense = Expenses.Where((Expense arg) => arg.Id == id).FirstOrDefault();
-            Expenses.Remove(oldExpense);
-
+            Savings.Add(expense);
             return await Task.FromResult(true);
         }
 
-        public async Task<Expense> GetExpenseAsync(string id)
+        public async Task<bool> AddMonthlyExpenseAsync(Expense expense)
         {
-            return await Task.FromResult(Expenses.FirstOrDefault(s => s.Id == id));
+            MonthlyExpenses.Add(expense);
+            return await Task.FromResult(true);
         }
 
-        public async Task<IEnumerable<Expense>> GetExpensesAsync(bool forceRefresh = false)
-        {
-            return await Task.FromResult(Expenses);
-        }
 
-        //public Task<Expense> GetItemAsync(string id)
+        //-----------Update Functions-------------
+        //public async Task<bool> UpdateExpenseAsync(Expense Expense)
         //{
-        //    throw new NotImplementedException();
+        //    var oldExpense = Expenses.Where((Expense arg) => arg.Id == Expense.Id).FirstOrDefault();
+        //    Expenses.Remove(oldExpense);
+        //    Expenses.Add(Expense);
+
+        //    return await Task.FromResult(true);
         //}
+
+
+        //-----------Delete Functions-------------
+        public async Task<bool> DeleteIncomeAsync(string id)
+        {
+            var oldExpense = IncomeSources.Where((Expense arg) => arg.Id == id).FirstOrDefault();
+            IncomeSources.Remove(oldExpense);
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> DeleteSavingsAsync(string id)
+        {
+            var oldExpense = Savings.Where((Expense arg) => arg.Id == id).FirstOrDefault();
+            Savings.Remove(oldExpense);
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> DeleteMonthlyExpenseAsync(string id)
+        {
+            var oldExpense = MonthlyExpenses.Where((Expense arg) => arg.Id == id).FirstOrDefault();
+            MonthlyExpenses.Remove(oldExpense);
+            return await Task.FromResult(true);
+        }
+
+
+        //-----------Get Functions-------------
+        public async Task<Expense> GetIncomeAsync(string id)
+        {
+            return await Task.FromResult(IncomeSources.FirstOrDefault(s => s.Id == id));
+        }
+
+        public async Task<Expense> GetSavingAsync(string id)
+        {
+            return await Task.FromResult(Savings.FirstOrDefault(s => s.Id == id));
+        }
+
+        public async Task<Expense> GetMonthlyExpenseAsync(string id)
+        {
+            return await Task.FromResult(MonthlyExpenses.FirstOrDefault(s => s.Id == id));
+        }
+
+
+        //-----------Get (multi) Functions-------------
+        public async Task<ObservableCollection<Expense>> GetIncomeSoursesAsync(bool forceRefresh = false)
+        {
+            return await Task.FromResult(IncomeSources);
+        }
+
+        public async Task<ObservableCollection<Expense>> GetSavingsAsync(bool forceRefresh = false)
+        {
+            return await Task.FromResult(IncomeSources);
+        }
+
+        public async Task<ObservableCollection<Expense>> GetMonthlyExpensesAsync(bool forceRefresh = false)
+        {
+            return await Task.FromResult(IncomeSources);
+        }
+
     }
 }
