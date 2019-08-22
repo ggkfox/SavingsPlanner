@@ -1,8 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using SavingsPlanner.Models;
-using SavingsPlanner.ViewModels;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+using SavingsPlanner.Models;
+using SavingsPlanner.Views;
+using SavingsPlanner.ViewModels;
 
 namespace SavingsPlanner.Views
 {
@@ -19,6 +26,7 @@ namespace SavingsPlanner.Views
 
         public void SaveButton_Clicked()
         {
+
         }
 
         public void BackButton_Clicked()
@@ -26,10 +34,10 @@ namespace SavingsPlanner.Views
 
         }
 
-        //protected override void OnAppearing()
-        //{
-        //    base.OnAppearing();
-        //    viewModel.LoadDraftData.Execute(null);
-        //}
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            viewModel.LoadDraftData.Execute(null);
+        }
     }
 }

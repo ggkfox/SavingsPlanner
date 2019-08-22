@@ -6,7 +6,7 @@
              Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Title}"
+            <Label Text="{Binding IncomeSum}"
                    HorizontalOptions="Center"
                    Margin="5"></Label>
             <Label Text="{Binding SavingsSum}"

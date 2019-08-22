@@ -16,11 +16,10 @@ namespace SavingsPlanner.ViewModels
         public ObservableCollection<Expense> DraftIncome;
         public ObservableCollection<Expense> DraftSavings;
         public ObservableCollection<Expense> DraftExpenses;
-
-        public string IncomeSum;
-        public string SavingsSum;
-        public string ExpensesSum;
-        public string Remainder;
+        public string IncomeSum { get; set; }
+        public string SavingsSum { get; set; }
+        public string ExpensesSum { get; set; }
+        public string Remainder { get; set; }
 
         public Command LoadDraftData { get; set; }
 
@@ -32,10 +31,10 @@ namespace SavingsPlanner.ViewModels
             DraftSavings = new ObservableCollection<Expense>();
             DraftExpenses = new ObservableCollection<Expense>();
 
-            IncomeSum = "test";
-            SavingsSum = "test1";
-            ExpensesSum = "test2";
-            Remainder = "test3";
+            IncomeSum = "";
+            SavingsSum = "";
+            ExpensesSum = "";
+            Remainder = "";
 
             LoadDraftData = new Command(async () => await ExecuteLoadDraftData());
         }
@@ -86,14 +85,14 @@ namespace SavingsPlanner.ViewModels
                     DraftExpenses.Add(item);
                 }
 
-                //int a = Sum(DraftIncome);
-                //int b = Sum(DraftSavings);
-                //int c = Sum(DraftExpenses);
-                //int d = a - b - c;
-                //IncomeSum = a.ToString();
-                //SavingsSum = b.ToString();
-                //ExpensesSum = c.ToString();
-                //Remainder = d.ToString();
+                int a = Sum(DraftIncome);
+                int b = Sum(DraftSavings);
+                int c = Sum(DraftExpenses);
+                int d = a - b - c;
+                IncomeSum = a.ToString();
+                SavingsSum = b.ToString();
+                ExpensesSum = c.ToString();
+                Remainder = d.ToString();
 
             }
             catch (Exception ex)
