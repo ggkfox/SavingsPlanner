@@ -18,6 +18,7 @@ namespace SavingsPlanner.ViewModels
 
         public ExpenseDetailViewModel()
         {
+            Title = "New Budget";
             Expenses = new ObservableCollection<Expense>();
             LoadExpensesCommand = new Command(async () => await ExecuteLoadExpensesCommand());
         }
@@ -46,7 +47,7 @@ namespace SavingsPlanner.ViewModels
 
         public async Task SaveChanges()
         {
-            await DraftBudget.AssignExpensesAsync(Expenses);
+            await DraftBudget.AssignAllExpensesAsync(Expenses);
         }
 
         async Task ExecuteLoadExpensesCommand()

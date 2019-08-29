@@ -31,27 +31,14 @@ namespace SavingsPlanner.ViewModels
             DraftSavings = new ObservableCollection<Expense>();
             DraftExpenses = new ObservableCollection<Expense>();
 
-            IncomeSum = "";
-            SavingsSum = "";
-            ExpensesSum = "";
-            Remainder = "";
-
             LoadDraftData = new Command(async () => await ExecuteLoadDraftData());
         }
 
-        public int Sum(ObservableCollection<Expense> items)
+        public async Task CommitChanges()
         {
-            int sum = 0;
-            foreach (var item in items)
-            {
-                sum += item.Amount;
-            }
-            return sum;
-        }
-
-        public void CommitChanges()
-        {
-            Budget.AssignIncomeAsync(DraftIncome);
+            await Budget.AssignAllIncomeAsync(DraftIncome);
+            await Budget.AssignAllSavingsAsync(DraftSavings);
+            await Budget.AssignAllExpensesAsync(DraftExpenses);
         }
 
         async Task ExecuteLoadDraftData()
@@ -85,14 +72,13 @@ namespace SavingsPlanner.ViewModels
                     DraftExpenses.Add(item);
                 }
 
-                int a = Sum(DraftIncome);
-                int b = Sum(DraftSavings);
-                int c = Sum(DraftExpenses);
-                int d = a - b - c;
-                IncomeSum = a.ToString();
-                SavingsSum = b.ToString();
-                ExpensesSum = c.ToString();
-                Remainder = d.ToString();
+                int a = Budget.GetSumOfAllIncome();
+                int b = Budget.GetSumOfAllSavings();
+                int c = Budget.GetSumOfAllExpenses();
+                IncomeSum = "Total Income: " + a.ToString();
+                SavingsSum = "Total Savings: " + b.ToString();
+                ExpensesSum = "All Monthly Expenses: " + c.ToString();
+                Remainder = "Your remaining monthly budget: " + (a - b - c).ToString();
 
             }
             catch (Exception ex)

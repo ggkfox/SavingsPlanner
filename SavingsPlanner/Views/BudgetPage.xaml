@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="SavingsPlanner.Views.BudgetPage"
              BackgroundColor="{StaticResource LightGrey}">
     <ContentPage.ToolbarItems>
@@ -8,22 +9,34 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="You dont seem to have created a budget yet."
-                   HorizontalTextAlignment="Center"
-                   Margin="30">
-            </Label>
-            <Button x:Name="NewBudget_Button"
-                    Clicked="NewBudget_Clicked"
-                    Text="CREATE A BUDGET!"
-                    TextColor="{StaticResource Grey}"
-                    BorderColor="{StaticResource Grey}"
-                    BorderWidth="1"
-                    FontSize="Title"
-                    Padding="20"
-                    VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="{StaticResource Green}">
-            </Button>
+
+            <ScrollView x:Name="StatsView">
+                <forms:ChartView x:Name="Chart1"
+                                 Chart="{Binding PieChart}"
+                                 HeightRequest="150" />
+            </ScrollView>
+
+
+            <StackLayout x:Name="ButtonView">
+                <Label Text="You dont seem to have created a budget yet."
+                       HorizontalTextAlignment="Center"
+                       Margin="30">
+                </Label>
+                <Button x:Name="NewBudget_Button"
+                        Clicked="NewBudget_Clicked"
+                        Text="CREATE A BUDGET!"
+                        TextColor="{StaticResource Grey}"
+                        BorderColor="{StaticResource Grey}"
+                        BorderWidth="1"
+                        FontSize="Title"
+                        Padding="20"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        BackgroundColor="{StaticResource Green}">
+                </Button>
+            </StackLayout>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

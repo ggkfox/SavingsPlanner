@@ -2,25 +2,29 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SavingsPlanner.Views.NewBudgetOverview"
+             xmlns:local="clr-namespace:SavingsPlanner.Models"
              BackgroundColor="{StaticResource LightGrey}"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             NavigationPage.HasBackButton="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding IncomeSum}"
+        <StackLayout Padding="25">
+            <Label x:Name="IncomeLabel"
+                   HorizontalOptions="Center"
+                   Margin="0,50,0,5"></Label>
+            <Label x:Name="SavingsLabel"
                    HorizontalOptions="Center"
                    Margin="5"></Label>
-            <Label Text="{Binding SavingsSum}"
+            <Label x:Name="ExpensesLabel"
                    HorizontalOptions="Center"
                    Margin="5"></Label>
-            <Label Text="{Binding ExpensesSum}"
-                   HorizontalOptions="Center"
-                   Margin="5"></Label>
-            <Label Text="{Binding Remainder}"
+            <Label x:Name="RemainderLabel"
+                   TextColor="red"
                    HorizontalOptions="Center"
                    Margin="5"></Label>
 
 
             <Button Text="Save Budget"
+                    Clicked="SaveButton_Clicked"
                     TextColor="{StaticResource Grey}"
                     BackgroundColor="{StaticResource Green}"
                     BorderColor="{StaticResource Grey}"
@@ -31,8 +35,9 @@
                     HorizontalOptions="CenterAndExpand">
             </Button>
             <Button Text="Back"
+                    Clicked="BackButton_Clicked"
                     FontSize="Medium"
-                    VerticalOptions="End"
+                    VerticalOptions="StartAndExpand"
                     HorizontalOptions="CenterAndExpand"
                     WidthRequest="100"
                     BackgroundColor="{StaticResource Grey}"

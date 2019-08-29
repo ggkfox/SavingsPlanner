@@ -24,20 +24,26 @@ namespace SavingsPlanner.Views
             BindingContext = viewModel = new NewBudgetOverviewViewModel();
         }
 
-        public void SaveButton_Clicked()
+        public async void SaveButton_Clicked(object sender, EventArgs e)
         {
-
+            await viewModel.CommitChanges();
+            await Navigation.PopModalAsync();
         }
 
-        public void BackButton_Clicked()
+        public async void BackButton_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PopAsync();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             viewModel.LoadDraftData.Execute(null);
+            IncomeLabel.Text = viewModel.IncomeSum;
+            SavingsLabel.Text = viewModel.SavingsSum;
+            ExpensesLabel.Text = viewModel.ExpensesSum;
+            RemainderLabel.Text = viewModel.Remainder;
+
         }
     }
 }

@@ -6,7 +6,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:SavingsPlanner.Models"
              x:Class="SavingsPlanner.Views.IncomeDetailPage"
-             Title="New Budget - Income">
+             Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
 
